@@ -1,5 +1,6 @@
 package com.zipcodewilmington.phonebook;
 
+import java.sql.Array;
 import java.util.*;
 //import java.util.HashMap;
 
@@ -61,13 +62,24 @@ public class PhoneBook {
             if (phonebook.get(key).contains(phoneNumber)){
                 return key;
             }
-
         }
         return null;
     }
 
     public List<String> getAllContactNames() {
-        return null;
+        List<String> contacts = new ArrayList<>();
+
+        for (String key : phonebook.keySet()){
+            contacts.add(key);
+        }
+
+        List<String> orderedContacts = new ArrayList<>();
+
+        for (int i = (contacts.size() - 1); i > 0; i--){
+            orderedContacts.add(contacts.get(i));
+        }
+
+        return orderedContacts;
     }
 
     public Map<String, List<String>> getMap() {
