@@ -22,27 +22,47 @@ public class PhoneBook {
     }
 
     public void add(String name, String phoneNumber) {
+        if (phonebook.containsKey(name)){
+            phonebook.get(name).add(phoneNumber);
+        }
+        else {
+            phonebook.put(name, new ArrayList<>());
+            phonebook.get(name).add(phoneNumber);
+        }
     }
 
     public void addAll(String name, String... phoneNumbers) {
+        for (String n : phoneNumbers) {
+            add(name, n);
+        }
     }
 
     public void remove(String name) {
+        phonebook.remove(name);
     }
 
     public Boolean hasEntry(String name, String number) {
-        return null;
+        if (phonebook.containsKey(name) && phonebook.get(name).contains(number)){
+            return true;
+        }
+        return false;
     }
 
     public Boolean hasEntry(String name) {
-        return null;
+        return phonebook.containsKey(name);
     }
 
     public List<String> lookup(String name) {
-        return null;
+        return phonebook.get(name);
     }
 
     public String reverseLookup(String phoneNumber)  {
+        for (String key : phonebook.keySet()){
+            if (phonebook.get(key).contains(phoneNumber)){
+                return key;
+            }
+
+        }
         return null;
     }
 
